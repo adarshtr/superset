@@ -48,7 +48,24 @@ import { convertInteger } from '../utils/convertInteger';
 import { getDefaultTooltip } from '../utils/tooltip';
 import { Refs } from '../types';
 
-const percentFormatter = getNumberFormatter(NumberFormats.PERCENT_2_POINT);
+
+//TODO: Move get rounding to common reusable file
+const getRounding = (decimal: Number) => {
+  switch(decimal){
+    case 0:
+      return NumberFormats.INTEGER;
+    case 1:
+      return NumberFormats.PERCENT_1_POINT;
+    case 2:
+      return NumberFormats.PERCENT_2_POINT;
+    case 3: 
+      return NumberFormats.PERCENT_3_POINT;
+    default:
+      return NumberFormats.PERCENT_2_POINT;
+  }
+}
+
+const percentFormatter = getNumberFormatter(getRounding(2));
 
 export function formatPieLabel({
   params,
@@ -61,6 +78,7 @@ export function formatPieLabel({
   numberFormatter: NumberFormatter;
   sanitizeName?: boolean;
 }): string {
+  debugger;
   const { name: rawName = '', value, percent } = params;
   const name = sanitizeName ? sanitizeHtml(rawName) : rawName;
   const formattedValue = numberFormatter(value as number);

@@ -77,6 +77,7 @@ export const DEFAULT_FORM_DATA: EchartsPieFormData = {
   labelsOutside: true,
   showLabelsThreshold: 5,
   dateFormat: 'smart_date',
+  decimalPlaces: 2
 };
 
 export type PieChartTransformedProps =

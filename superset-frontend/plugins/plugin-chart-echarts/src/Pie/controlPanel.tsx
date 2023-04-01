@@ -40,6 +40,7 @@ const {
   outerRadius,
   numberFormat,
   showLabels,
+  decimalPlaces
 } = DEFAULT_FORM_DATA;
 
 const config: ControlPanelConfig = {
@@ -240,6 +241,22 @@ const config: ControlPanelConfig = {
             },
           },
         ],
+        [
+          {
+            name: 'decimal_places',
+            config: {
+              type: 'SelectControl',
+              freeForm: true,
+              label: t('Decimal Places'),
+              renderTrigger: true,
+              default: decimalPlaces,
+              choices: [0,1,2,3],
+              description: `${D3_FORMAT_DOCS} ${D3_NUMBER_FORMAT_DESCRIPTION_VALUES_TEXT}`,
+              tokenSeparators: ['\n', '\t', ';'],
+            },
+          },
+        ],
+
       ],
     },
   ],

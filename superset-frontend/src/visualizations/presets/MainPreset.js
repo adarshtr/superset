@@ -167,7 +167,7 @@ export default class MainPreset extends Preset {
         new TimeGrainFilterPlugin().configure({ key: 'filter_timegrain' }),
         new EchartsTreeChartPlugin().configure({ key: 'tree_chart' }),
         new EchartsSunburstChartPlugin().configure({ key: 'sunburst_v2' }),
-        new HandlebarsChartPlugin().configure({ key: 'handlebars' }),
+        new HandlebarsChartPlugin().configure({ key: 'handlebars' }),	  
         ...experimentalplugins,
       ],
     });

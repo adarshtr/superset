@@ -25,6 +25,7 @@
   "dependencies": {
     "chalk": "^4.0.0",
     "lodash": "^4.17.11",
+    "superset-plugin-chart-hello-world": "file:../../../../../../../../tmp/superset-plugin-chart-hello-world",
     "yeoman-generator": "^5.7.0",
     "yosay": "^2.0.2"
   },

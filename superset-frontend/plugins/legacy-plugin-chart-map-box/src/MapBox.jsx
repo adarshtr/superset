@@ -20,12 +20,13 @@
 /* eslint-disable react/forbid-prop-types, react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
-import MapGL from 'react-map-gl';
+import Map,{Marker} from 'react-map-gl';
 import ViewportMercator from 'viewport-mercator-project';
 import ScatterPlotGlowOverlay from './ScatterPlotGlowOverlay';
 import './MapBox.css';
+import 'mapbox-gl/dist/mapbox-gl.css'
 
-const NOOP = () => {};
+const NOOP = () => { };
 export const DEFAULT_MAX_ZOOM = 16;
 export const DEFAULT_POINT_RADIUS = 60;
 
@@ -120,33 +121,49 @@ class MapBox extends React.Component {
     const clusters = clusterer.getClusters(bbox, Math.round(viewport.zoom));
 
     return (
-      <MapGL
-        {...viewport}
-        mapStyle={mapStyle}
-        width={width}
-        height={height}
-        mapboxApiAccessToken={mapboxApiKey}
-        onViewportChange={this.handleViewportChange}
-        preserveDrawingBuffer
-      >
-        <ScatterPlotGlowOverlay
-          {...viewport}
-          isDragging={isDragging}
-          locations={clusters}
-          dotRadius={pointRadius}
-          pointRadiusUnit={pointRadiusUnit}
-          rgb={rgb}
-          globalOpacity={globalOpacity}
-          compositeOperation="screen"
-          renderWhileDragging={renderWhileDragging}
-          aggregation={hasCustomMetric ? aggregatorName : null}
-          lngLatAccessor={location => {
-            const { coordinates } = location.geometry;
-
-            return [coordinates[0], coordinates[1]];
+      <>Is this working
+        <Map
+          initialViewState={{
+            latitude: 37.8,
+            longitude: -122.4,
+            zoom: 14
           }}
-        />
-      </MapGL>
+          style={{ width: 800, height: 600 }}
+          mapStyle="mapbox://styles/mapbox/streets-v9"
+          mapboxAccessToken={"pk.eyJ1IjoiYWRhcnNodHIiLCJhIjoiY2xmN3F0czg3MHRwazNzcGMwZHVrdnQ2MSJ9.Egne08IA6Lu64zYYGU9nQg"}
+        >
+          <Marker longitude={-122.4} latitude={37.8} color="red" />
+          <Marker longitude={-123.4} latitude={37.8} color="blue" />
+
+        </Map>
+      </>
+      // <MapGL
+      //   {...viewport}
+      //   mapStyle={mapStyle}
+      //   width={width}
+      //   height={height}
+      //   mapboxApiAccessToken="pk.eyJ1IjoiYWRhcnNodHIiLCJhIjoiY2xmN3F0czg3MHRwazNzcGMwZHVrdnQ2MSJ9.Egne08IA6Lu64zYYGU9nQg"
+      //   onViewportChange={this.handleViewportChange}
+      //   preserveDrawingBuffer
+      // >
+      //   <ScatterPlotGlowOverlay
+      //     {...viewport}
+      //     isDragging={isDragging}
+      //     locations={clusters}
+      //     dotRadius={pointRadius}
+      //     pointRadiusUnit={pointRadiusUnit}
+      //     rgb={rgb}
+      //     globalOpacity={globalOpacity}
+      //     compositeOperation="screen"
+      //     renderWhileDragging={renderWhileDragging}
+      //     aggregation={hasCustomMetric ? aggregatorName : null}
+      //     lngLatAccessor={location => {
+      //       const { coordinates } = location.geometry;
+
+      //       return [coordinates[0], coordinates[1]];
+      //     }}
+      //   />
+      // </MapGL>
     );
   }
 }
