@@ -20,12 +20,15 @@
 /* eslint-disable react/forbid-prop-types, react/require-default-props */
 import React from 'react';
 import PropTypes from 'prop-types';
-import Map,{Marker} from 'react-map-gl';
+import Map, { Marker, Popup } from 'react-map-gl';
 import ViewportMercator from 'viewport-mercator-project';
 import ScatterPlotGlowOverlay from './ScatterPlotGlowOverlay';
 import './MapBox.css';
 import 'mapbox-gl/dist/mapbox-gl.css'
+import PopupMarker from './PopupMarker';
 
+
+debugger;
 const NOOP = () => { };
 export const DEFAULT_MAX_ZOOM = 16;
 export const DEFAULT_POINT_RADIUS = 60;
@@ -120,6 +123,8 @@ class MapBox extends React.Component {
     ];
     const clusters = clusterer.getClusters(bbox, Math.round(viewport.zoom));
 
+    console.log("clusters",clusters);
+
     return (
       <>Is this working
         <Map
@@ -132,8 +137,13 @@ class MapBox extends React.Component {
           mapStyle="mapbox://styles/mapbox/streets-v9"
           mapboxAccessToken={"pk.eyJ1IjoiYWRhcnNodHIiLCJhIjoiY2xmN3F0czg3MHRwazNzcGMwZHVrdnQ2MSJ9.Egne08IA6Lu64zYYGU9nQg"}
         >
-          <Marker longitude={-122.4} latitude={37.8} color="red" />
-          <Marker longitude={-123.4} latitude={37.8} color="blue" />
+          {
+            clusters.map( point =>  <PopupMarker color="blue" text="Point B" lat={point.geometry.coordinates[1]} lon={point.geometry.coordinates[0]} />  )
+          }
+
+          <PopupMarker color="red" text="Point A" lat={37.8} lon={-122.4} />
+
+          <PopupMarker color="blue" text="Point B" lat={37.8} lon={-122.5} />
 
         </Map>
       </>
