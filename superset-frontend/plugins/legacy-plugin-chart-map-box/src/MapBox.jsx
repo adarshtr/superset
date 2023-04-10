@@ -62,7 +62,7 @@ const defaultProps = {
 class MapBox extends React.Component {
   constructor(props) {
     super(props);
-
+    debugger;
     const { width, height, bounds } = this.props;
     // Get a viewport that fits the given bounds, which all marks to be clustered.
     // Derive lat, lon and zoom from this viewport. This is only done on initial
@@ -134,7 +134,7 @@ class MapBox extends React.Component {
             zoom: 14
           }}
           style={{ width: 800, height: 600 }}
-          mapStyle="mapbox://styles/mapbox/streets-v9"
+          mapStyle="mapbox://styles/mapbox/light-v9"
           mapboxAccessToken={"pk.eyJ1IjoiYWRhcnNodHIiLCJhIjoiY2xmN3F0czg3MHRwazNzcGMwZHVrdnQ2MSJ9.Egne08IA6Lu64zYYGU9nQg"}
         >
           {
