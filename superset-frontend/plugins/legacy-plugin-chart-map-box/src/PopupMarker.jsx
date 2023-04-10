@@ -6,7 +6,7 @@ const PopupMarker = ({lon,lat,text,color}) => {
         <>
             <Popup
                 longitude={lon} latitude={lat}
-                anchor="bottom-right"
+                anchor="top"
                 onClose={() => setShowPopup(true)}>
                 {text}
             </Popup>
