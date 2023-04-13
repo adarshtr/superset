@@ -19,9 +19,10 @@
 import React, { useEffect, createRef } from 'react';
 import { styled } from '@superset-ui/core';
 import { SupersetPluginChartNavifyProps, SupersetPluginChartNavifyStylesProps } from './types';
-import Map, {Marker} from 'react-map-gl';
+import Map from 'react-map-gl';
 
 import 'mapbox-gl/dist/mapbox-gl.css';
+import MarkerText from './MarkerText';
 
 // The following Styles component is a <div> element, which has been styled using Emotion
 // For docs, visit https://emotion.sh/docs/styled
@@ -99,6 +100,9 @@ export default function SupersetPluginChartNavify(props: SupersetPluginChartNavi
     mapStyle="mapbox://styles/mapbox/streets-v9"
     mapboxAccessToken={MAPBOX_TOKEN}
   >
+    {
+      data.map( element =>  <MarkerText lon={element.LON} lat={element.LAT} lab={element.STREET}/> )
+    }
   </Map>
   );
 }

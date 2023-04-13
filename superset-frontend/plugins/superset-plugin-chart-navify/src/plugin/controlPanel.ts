@@ -101,27 +101,57 @@ const config: ControlPanelConfig = {
       label: t('Query'),
       expanded: true,
       controlSetRows: [
+        // [
+        //   {
+        //     name: 'cols',
+        //     config: {
+        //       ...sharedControls.groupby,
+        //       label: t('Columns'),
+        //       description: t('Columns to group by'),
+        //     },
+        //   },
+        // ],
         [
           {
-            name: 'cols',
+            name: 'lon',
             config: {
               ...sharedControls.groupby,
-              label: t('Columns'),
-              description: t('Columns to group by'),
+              label: t('Longitude'),
+              description: t('Longitude'),
             },
           },
         ],
         [
           {
-            name: 'metrics',
+            name: 'lat',
             config: {
-              ...sharedControls.metrics,
-              // it's possible to add validators to controls if
-              // certain selections/types need to be enforced
-              validators: [validateNonEmpty],
+              ...sharedControls.groupby,
+              label: t('Latitude'),
+              description: t('Latitude'),
             },
           },
         ],
+        [
+          {
+            name: 'lab',
+            config: {
+              ...sharedControls.groupby,
+              label: t('Label'),
+              description: t('Label of Marker'),
+            },
+          },
+        ],
+        // [
+        //   {
+        //     name: 'metrics',
+        //     config: {
+        //       ...sharedControls.metrics,
+        //       // it's possible to add validators to controls if
+        //       // certain selections/types need to be enforced
+        //       validators: [validateNonEmpty],
+        //     },
+        //   },
+        // ],
         ['adhoc_filters'],
         [
           {
