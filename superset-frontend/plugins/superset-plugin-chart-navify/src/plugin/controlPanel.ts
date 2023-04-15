@@ -167,6 +167,39 @@ const config: ControlPanelConfig = {
       controlSetRows: [
         [
           {
+            name: 'conditional_formatting',
+            config: {
+              type: 'ConditionalFormattingControl',
+              renderTrigger: true,
+              label: t('Conditional formatting'),
+              description: t(
+                'Apply conditional color formatting to numeric columns',
+              ),
+              shouldMapStateToProps() {
+                return true;
+              },
+              mapStateToProps(explore, _, chart) {
+                const verboseMap = explore?.datasource?.columns ?? {};
+                const { colnames, coltypes } =
+                  chart?.queriesResponse?.[0] ?? {};
+                const numericColumns =
+                  Array.isArray(colnames) && Array.isArray(coltypes)
+                    ? colnames
+                        .map(colname => ({
+                          value: colname,
+                          label: colname,
+                        }))
+                    : [];
+                return {
+                  columnOptions: numericColumns,
+                  verboseMap,
+                };
+              },
+            },
+          },
+        ],
+        [
+          {
             name: 'header_text',
             config: {
               type: 'TextControl',
