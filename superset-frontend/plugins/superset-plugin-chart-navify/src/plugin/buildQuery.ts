@@ -34,8 +34,8 @@ import { buildQueryContext, QueryFormData } from '@superset-ui/core';
  */
 export default function buildQuery(formData: QueryFormData) {
   debugger;
-  const { lat: lat, lon: lon, lab: lab} = formData;
-  const groupby = lat.concat(lon).concat(lab);
+  const { lat: lat, lon: lon, lab: lab, par: par } = formData;
+  const groupby = lat.concat(lon).concat(lab).concat(par);
   return buildQueryContext(formData, baseQueryObject => [
     {
       ...baseQueryObject,

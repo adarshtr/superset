@@ -141,30 +141,16 @@ const config: ControlPanelConfig = {
             },
           },
         ],
-        // [
-        //   {
-        //     name: 'metrics',
-        //     config: {
-        //       ...sharedControls.metrics,
-        //       // it's possible to add validators to controls if
-        //       // certain selections/types need to be enforced
-        //       validators: [validateNonEmpty],
-        //     },
-        //   },
-        // ],
-        ['adhoc_filters'],
         [
           {
-            name: 'row_limit',
-            config: sharedControls.row_limit,
+            name: 'par',
+            config: {
+              ...sharedControls.groupby,
+              label: t('Color Parameter'),
+              description: t('Parameter that determines the color'),
+            },
           },
         ],
-      ],
-    },
-    {
-      label: t('Hello Controls!'),
-      expanded: true,
-      controlSetRows: [
         [
           {
             name: 'conditional_formatting',
@@ -198,6 +184,30 @@ const config: ControlPanelConfig = {
             },
           },
         ],
+        // [
+        //   {
+        //     name: 'metrics',
+        //     config: {
+        //       ...sharedControls.metrics,
+        //       // it's possible to add validators to controls if
+        //       // certain selections/types need to be enforced
+        //       validators: [validateNonEmpty],
+        //     },
+        //   },
+        // ],
+        ['adhoc_filters'],
+        [
+          {
+            name: 'row_limit',
+            config: sharedControls.row_limit,
+          },
+        ],
+      ],
+    },
+    {
+      label: t('Hello Controls!'),
+      expanded: true,
+      controlSetRows: [
         [
           {
             name: 'header_text',

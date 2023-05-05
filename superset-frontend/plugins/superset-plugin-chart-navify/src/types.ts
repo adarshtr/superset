@@ -36,5 +36,6 @@ export type SupersetPluginChartNavifyQueryFormData = QueryFormData &
 export type SupersetPluginChartNavifyProps = SupersetPluginChartNavifyStylesProps &
   SupersetPluginChartNavifyCustomizeProps & {
     data: TimeseriesDataRecord[];
+    conditionalFormatting: []
     // add typing here for the props you pass in from transformProps.ts!
   };

@@ -63,10 +63,30 @@ const Styles = styled.div<SupersetPluginChartNavifyStylesProps>`
  *  * FormData (your controls!) provided as props by transformProps.ts
  */
 
+const getColor = (conditions, element) => {
+  debugger;
+  let color = 'bule'
+  conditions.forEach(condition => {
+    console.log(operate(condition.operator, element[condition.column], condition.targetValue) ? condition.colorScheme : 'blue');
+    color =  operate(condition.operator, element[condition.column], condition.targetValue) ? condition.colorScheme : 'blue';
+  })
+  return color;
+}
+
+const operate = (operator, param, value) => {
+  debugger;
+  if(operator == '>')
+    return param > value;
+  if(operator == '<')
+    return param < value;
+  if(operator == '=')
+  return param == value;
+}
+
 export default function SupersetPluginChartNavify(props: SupersetPluginChartNavifyProps) {
   // height and width are the height and width of the DOM element as it exists in the dashboard.
   // There is also a `data` prop, which is, of course, your DATA 🎉
-  const { data, height, width } = props;
+  const { data, height, width, conditionalFormatting } = props;
 
   const rootElem = createRef<HTMLDivElement>();
 
@@ -101,7 +121,7 @@ export default function SupersetPluginChartNavify(props: SupersetPluginChartNavi
     mapboxAccessToken={MAPBOX_TOKEN}
   >
     {
-      data.map( element =>  <MarkerText lon={element.LON} lat={element.LAT} lab={element.STREET}/> )
+      data.map( element =>  <MarkerText lon={element.LON} lat={element.LAT} lab={element.STREET} clr={getColor(conditionalFormatting,element)}/> )
     }
   </Map>
   );
